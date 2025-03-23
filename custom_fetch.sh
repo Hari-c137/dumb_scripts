@@ -1,8 +1,5 @@
 #!/bin/sh
-#
-# ufetch-openbsd - tiny system info for openbsd
 
-## INFO
 
 # user is already defined
 host="$(hostname)"
@@ -50,7 +47,6 @@ ui="$(basename "${ui}")"
 
 ## DEFINE COLORS
 
-# probably don't change these
 if [ -x "$(command -v tput)" ]; then
 	bold="$(tput bold 2> /dev/null)"
 	black="$(tput setaf 0 2> /dev/null 0 0 2>/dev/null)"
@@ -64,13 +60,12 @@ if [ -x "$(command -v tput)" ]; then
 	reset="$(tput sgr0 2> /dev/null)"
 fi
 
-# you can change these
-lc="${reset}${bold}${yellow}"       # labels
-nc="${reset}${bold}${yellow}"       # user and hostname
-ic="${reset}"                       # info
-c0="${reset}${yellow}"              # first color
-c1="${reset}${white}"               # second color
-c2="${reset}${bold}${yellow}"       # third color
+lc="${reset}${bold}${yellow}"  
+nc="${reset}${bold}${yellow}" 
+ic="${reset}"                
+c0="${reset}${yellow}"      
+c1="${reset}${white}"      
+c2="${reset}${bold}${yellow}"  
 
 ## OUTPUT
 
