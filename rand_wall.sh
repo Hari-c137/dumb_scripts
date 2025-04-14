@@ -2,7 +2,7 @@
 
 c_wbg=$(pgrep wbg)
 c_sbg=$(pgrep swaybg)
-PIC=($(find ~/pics/ -type f | shuf -n 2 --random-source=/dev/null))
+PIC=($(find ~/pics/ -type f | shuf -n 2))
 
 if xbps-query -Rs swaybg > /dev/null; then
   if [[ c_wbg != NULL ]]; then
