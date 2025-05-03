@@ -36,7 +36,6 @@ case $choice in
        esac
 
 ## ask choice for autoburn 
-## void linux choice (glibc + musl >> fzf ) 
 ## autoburn to selected given /dev/sdx (dd or custom) 
 ## void linux custom builder
 
