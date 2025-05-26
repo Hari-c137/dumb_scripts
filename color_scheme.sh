@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Author: Harry P.
+# Date:   2025-05-26 23:52
+# Header: color-scheme.sh
+# Desc:   fzf & gowall based wallpaper theme changer
+
 
 last_img=$(ls ~/pics/* | sort -n | tail -1 |  awk -F'/' '{print $NF}' | awk -F'.' '{print $1}');
 next_img=$((last_img + 1));
