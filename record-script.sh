@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Author: Harry P.
+# Date    2025-05-27 00:02
+# Header: record-script.sh
+# Desc:   wayland screen recorder script using wf-recorder
+
 getdate() {
     date '+%Y%m%d_%H%M%S'
 }
