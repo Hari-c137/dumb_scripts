@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Author: Harry P.
+# Date    2025-05-27 00:03
+# Header: swwwRand.sh
+# Desc:   random wallpaper switcher for sway
+
+
 WALLPAPER_DIR="${1:-$HOME/pics/}"
 effects=("grow" "wave" "any" "fade")
 random_index=$(( RANDOM % ${#effects[@]} )) 
