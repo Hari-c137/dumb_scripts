@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Author: Harry P.
+# Date    2025-05-26 23:58
+# Header: quick_isos.sh
+# Desc:   download latest ISOs from popular linux distros
+
 LD=("ArchLinux" "CachyOS" "PikaOS" "VoidLinux" "NobaraLinux" 
     "openSUSE_T" "T2Linux" "Download_All" "FedoraLinux" "EndeavourOS"
     "Pop!_OS" "AlpineLinux" "Mint" "Debian");
@@ -38,5 +43,5 @@ case $choice in
 ## ask choice for autoburn 
 ## autoburn to selected given /dev/sdx (dd or custom) 
 ## void linux custom builder
-
+## WIP!!
 
