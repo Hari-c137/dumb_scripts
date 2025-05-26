@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Author: Harry P.
+# Date    2025-05-27 00:01
+# Header: rand_wall.sh
+# Desc:   wayland wallpaper setter using multiple backend(wbg/swaybg)
+
 c_wbg=$(pgrep wbg)
 c_sbg=$(pgrep swaybg)
 PIC=($(find ~/pics/ -type f | shuf -n 2))
