@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Author: Harry P.
+# Date:   2025-05-26 23:54
+# Header: custom_fetch.sh
+# Desc: custom fetcher for void linux based on openbsd-fetch
 
 # user is already defined
 host="$(hostname)"
