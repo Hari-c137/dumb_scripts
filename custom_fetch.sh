@@ -11,7 +11,7 @@ os='Void Linux'
 kernel="$(uname -sr)"
 uptime="$(uptime | awk -F, '{sub(".*up ",x,$1);print $1}' | sed -e 's/^[ \t]*//')"
 packages="$(xbps-query -l | wc -l)"
-shell="$(basename "${SHELL}")"
+used_ram="$(awk '/MemTotal/ {mt=$2} /MemFree/ {mf=$2} /Buffers/ {b=$2} /^Cached:/ {c=$2} /SReclaimable/ {sr=$2} /Shmem/ {sh=$2} END {used=mt - mf - b - c - sr + sh; used_mb = used / 1024; if (used_mb < 1024) printf "%.2f MB\n", used_mb; else printf "%.1f GB\n", used_mb / 1024}' /proc/meminfo)"
 cpu="$(lscpu | grep "Model name" | sed 's/Model name:.* \(\i5-[^ ]*\).*/\1/')"
 gpu="$(lspci | grep -i vga | sed -E 's/.*(RX [0-9]+).*/\1/')"
 
@@ -19,7 +19,7 @@ gpu="$(lspci | grep -i vga | sed -E 's/.*(RX [0-9]+).*/\1/')"
 
 parse_rcs() {
 	for f in "${@}"; do
-		wm="$(tail -n 1 "${f}" 2> /dev/null | cut -d ' ' -f 2)"
+		wm="$(tail -n 1 "${f}" 2>/dev/null | cut -d ' ' -f 2)"
 		[ -n "${wm}" ] && echo "${wm}" && return
 	done
 }
@@ -52,24 +52,24 @@ ui="$(basename "${ui}")"
 ## DEFINE COLORS
 
 if [ -x "$(command -v tput)" ]; then
-	bold="$(tput bold 2> /dev/null)"
-	black="$(tput setaf 0 2> /dev/null 0 0 2>/dev/null)"
-	red="$(tput setaf 1 2> /dev/null 0 0 2>/dev/null)"
-	green="$(tput setaf 2 2> /dev/null 0 0 2>/dev/null)"
-	yellow="$(tput setaf 3 2> /dev/null 0 0 2>/dev/null)"
-	blue="$(tput setaf 4 2> /dev/null 0 0 2>/dev/null)"
-	magenta="$(tput setaf 5 2> /dev/null 0 0 2>/dev/null)"
-	cyan="$(tput setaf 6 2> /dev/null 0 0 2>/dev/null)"
-	white="$(tput setaf 7 2> /dev/null 0 0 2>/dev/null)"
-	reset="$(tput sgr0 2> /dev/null)"
+	bold="$(tput bold 2>/dev/null)"
+	black="$(tput setaf 0 0 0 2>/dev/null 2>/dev/null)"
+	red="$(tput setaf 1 0 0 2>/dev/null 2>/dev/null)"
+	green="$(tput setaf 2 0 0 2>/dev/null 2>/dev/null)"
+	yellow="$(tput setaf 3 0 0 2>/dev/null 2>/dev/null)"
+	blue="$(tput setaf 4 0 0 2>/dev/null 2>/dev/null)"
+	magenta="$(tput setaf 5 0 0 2>/dev/null 2>/dev/null)"
+	cyan="$(tput setaf 6 0 0 2>/dev/null 2>/dev/null)"
+	white="$(tput setaf 7 0 0 2>/dev/null 2>/dev/null)"
+	reset="$(tput sgr0 2>/dev/null)"
 fi
 
-lc="${reset}${bold}${yellow}"  
-nc="${reset}${bold}${yellow}" 
-ic="${reset}"                
-c0="${reset}${yellow}"      
-c1="${reset}${white}"      
-c2="${reset}${bold}${yellow}"  
+lc="${reset}${bold}${yellow}"
+nc="${reset}${bold}${yellow}"
+ic="${reset}"
+c0="${reset}${yellow}"
+c1="${reset}${white}"
+c2="${reset}${bold}${yellow}"
 
 ## OUTPUT
 
@@ -82,5 +82,6 @@ ${c0}  |        ${c1}O O ${c0}|  ${lc}UPTIME:    ${ic}${uptime}${reset}
 ${c0}  |_  ${c2}<   ${c0})  ${c2}3 ${c0})  ${lc}PACKAGES:  ${ic}${packages}${reset}
 ${c0}  / \         /   ${lc}CPU:       ${ic}${cpu}${reset}
 ${c0}     /-_____-\    ${lc}GPU:       ${ic}${gpu}${reset}
-EOF
+${c0}                  ${lc}RAM:       ${ic}${used_ram}${reset}
 
+EOF
