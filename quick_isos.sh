@@ -26,8 +26,8 @@ case $choice in
         ;;
       VoidLinux)
         ver=$(curl -s https://repo-fi.voidlinux.org/live/current/ | grep -i -E 'base' | tail -n 2 | sed -n 's/.*href="\([^"]*\)".*/\1/p' | fzf)
-        echo $ver
-        wget --quiet --show-progress https://repo-fi.voidlinux.org/live/current/$ver -O ~/Downloads/ISO/$ver
+        echo "$ver"
+        wget --quiet --show-progress https://repo-fi.voidlinux.org/live/current/"$ver" -O ~/Downloads/ISO/"$ver"
         ;;
       NobaraLinux)
         echo "NobaraLinux"
