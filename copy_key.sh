@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # i know.. this is very bad.. but what u gonna do about it? huh???
 
